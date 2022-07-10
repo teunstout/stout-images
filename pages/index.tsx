@@ -40,9 +40,10 @@ const Home: NextPage<Props> = ({ images }) => {
 						key={img}
 						src={`/test/${img}`}
 						alt="picture"
-						width={i % 2 === 0 ? widthCalc() : widthCalc(2)}
 						height={HEIGHT}
+						width={widthCalc()}
 						layout="fixed"
+						objectPosition="center center"
 						objectFit="cover"
 						quality={60}
 					/>
