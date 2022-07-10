@@ -6,36 +6,24 @@ import { ChangeEvent, useState } from "react";
 import { UploadFileTile } from "@components/uploadFileTile/uploadFileTile";
 
 const Upload: NextPage = () => {
-	const [fileNames, setFileNames] = useState<string[]>([]);
+	const [files, setFiles] = useState<File[]>([]);
 
 	const imageCompression = () => {
-		const fInput = window.document.getElementById(
-			"image-selector"
-		) as HTMLInputElement;
-		const files: FileList | null = fInput.files;
-		if (!files) throw Error("No files selected");
-
-		for (let i = 0; i < files.length; i++) {
+		files.forEach((file) => {
 			const image: HTMLImageElement = document.createElement("img");
-			const imageString = URL.createObjectURL(files[i]);
+			const imageString = URL.createObjectURL(file);
 			image.src = imageString;
 			image.onload = (_) => {
-				compressImage(files[i].name, image, 0.1);
+				compressImage(file.name, image, 0.1);
 				URL.revokeObjectURL(imageString);
 			};
-		}
+		});
 	};
 
 	const onInput = (event: ChangeEvent<HTMLInputElement>) => {
 		const files: FileList | null = event.target.files;
 		if (!files) return;
-		const temp: string[] = [];
-
-		for (let i = 0; i < files.length; i++) {
-			temp.push(files[i].name);
-		}
-
-		setFileNames(temp);
+		setFiles(Array.from(files));
 	};
 
 	return (
@@ -60,13 +48,19 @@ const Upload: NextPage = () => {
 						multiple
 					/>
 					<button className={css.button} onClick={imageCompression}>
-						Compress & Upload
+						Upload
 					</button>
 				</div>
 
 				<div className={css.fileList}>
-					{fileNames.map((fileName) => (
-						<UploadFileTile key={fileName} fileName={fileName} />
+					{files.map((file, index) => (
+						<UploadFileTile
+							key={file.name}
+							fileName={file.name}
+							removeTile={() =>
+								setFiles((prevFiles) => prevFiles.filter((_, i) => index !== i))
+							}
+						/>
 					))}
 				</div>
 			</main>

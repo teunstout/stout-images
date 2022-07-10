@@ -1,10 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&display=swap");
+
 html,
 body {
 	padding: 0;
 	margin: 0;
-	// TODO: Use a good font
 	background-color: #191919;
 	color: white;
+	font-family: 'Raleway', sans-serif;
 }
 
 a {

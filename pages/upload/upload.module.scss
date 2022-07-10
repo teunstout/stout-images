@@ -27,10 +27,11 @@
 }
 
 .fileList {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, 12rem);
+	display: flex;
+	flex-wrap: wrap;
 	gap: 1.5rem;
 	padding: 2rem;
 	width: 100%;
+	max-width: 60rem;
 	justify-content: center;
 }
