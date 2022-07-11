@@ -1,9 +1,10 @@
-import { compressImage } from "@helpers/compress";
+import { compressImageBase64 } from "@helpers/compress";
 import type { NextPage } from "next";
 import Head from "next/head";
 import css from "./upload.module.scss";
 import { ChangeEvent, useState } from "react";
 import { UploadFileTile } from "@components/uploadFileTile/uploadFileTile";
+import { uploadFileBase64 } from "@helpers/firebase";
 
 const Upload: NextPage = () => {
 	const [files, setFiles] = useState<File[]>([]);
@@ -14,8 +15,9 @@ const Upload: NextPage = () => {
 			const imageString = URL.createObjectURL(file);
 			image.src = imageString;
 			image.onload = (_) => {
-				compressImage(file.name, image, 0.1);
+				const base64 = compressImageBase64(image, 0.2);
 				URL.revokeObjectURL(imageString);
+				uploadFileBase64(`${file.name}.jpeg`, base64);
 			};
 		});
 	};

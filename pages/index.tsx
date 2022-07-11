@@ -12,6 +12,13 @@ interface Props {
 const Home: NextPage<Props> = ({ images }) => {
 	const HEIGHT = 256;
 
+	// useEffect(() => {
+	// 	fetch(images[0]).then(async (res) => {
+	// 		uploadImage(await res.blob());
+	// 		console.log("done");
+	// 	});
+	// });
+
 	const widthCalc = (mult: number = 1) => {
 		return (HEIGHT / RAW_HEIGHT) * RAW_WIDTH * mult;
 	};

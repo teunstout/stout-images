@@ -1,8 +1,7 @@
-export const compressImage = (
-	fileName: string,
+export const compressImageBase64 = (
 	image: HTMLImageElement,
-	scaleDown: number = 0.5
-) => {
+	scaleDown: number = 1
+): string => {
 	// resizing the image
 	const canvas = document.createElement("canvas");
 	const context = canvas.getContext("2d");
@@ -21,10 +20,10 @@ export const compressImage = (
 
 	// Convert to base so sending and unpacking is easy
 	const base64Image = canvas.toDataURL("image/jpeg").split(";base64,")[1];
-	writeBase64ToServer(fileName, base64Image);
+	return base64Image;
 };
 
-const writeBase64ToServer = (fileName: string, base64Image: string) => {
+export const writeBase64ToServer = (fileName: string, base64Image: string) => {
 	// TODO: Replace with real live string
 	fetch("http://localhost:3000/api/upload", {
 		method: "POST",
