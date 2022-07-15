@@ -1,0 +1,12 @@
+@use "styles/_mixins.scss" as mixins;
+
+.main {
+}
+
+.story {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	text-align: center;
+	gap: 1rem;
+}

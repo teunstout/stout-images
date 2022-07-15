@@ -1,12 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&display=swap");
+@import "./colors";
 
 html,
 body {
-	padding: 0;
-	margin: 0;
-	background-color: #191919;
-	color: white;
-	font-family: 'Raleway', sans-serif;
+	box-sizing: border-box;
 }
 
 a {
@@ -16,4 +13,24 @@ a {
 
 * {
 	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+
+	color: $typography;
+	font-family: "Raleway", sans-serif;
+}
+
+.content {
+	min-height: 100vh;
+	min-width: 100vw;
+
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+}
+
+@media only screen and (min-width: 60rem) {
+	.content {
+		flex-direction: row;
+	}
 }

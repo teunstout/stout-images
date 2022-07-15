@@ -1,0 +1,41 @@
+@use "styles/colors" as colors;
+
+.wrapper {
+	position: absolute;
+	width: min(24rem, 100vw);
+	height: 100vh;
+	left: -24rem;
+	top: 0;
+	transition: left 250ms linear;
+}
+
+.wrapperOpen {
+	left: 0;
+}
+
+.menu {
+	padding: 1rem;
+	cursor: pointer;
+	margin-right: auto;
+}
+
+.back {
+	position: absolute;
+	padding: 1rem;
+	cursor: pointer;
+	z-index: 999;
+	top: 0;
+	right: 0;
+}
+
+@media only screen and (min-width: 60rem) {
+	.wrapper {
+		position: relative;
+		left: 0;
+		top: 0;
+	}
+	.back,
+	.menu {
+		display: none;
+	}
+}
